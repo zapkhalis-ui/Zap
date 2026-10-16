@@ -16,21 +16,217 @@
         width: 1920px;
         height: 1080px;
         overflow: hidden;
-        background: #0a0a0a;
+        background: #07070b;
       }
       #root {
+        position: relative;
         width: 100%;
         height: 100%;
+        overflow: hidden;
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        color: #f4f4f5;
+        background: radial-gradient(ellipse at 50% 60%, #15122a 0%, #07070b 70%);
+      }
+      .clip {
+        position: absolute;
+        inset: 0;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
       }
-      #title {
-        color: #f4f4f5;
-        font-size: 72px;
-        font-weight: 600;
+      .grid {
+        position: absolute;
+        inset: -200px;
+        background-image:
+          linear-gradient(rgba(250, 204, 21, 0.06) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(250, 204, 21, 0.06) 1px, transparent 1px);
+        background-size: 80px 80px;
+      }
+      .flash {
+        position: absolute;
+        inset: 0;
+        background: #fde047;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 50;
+      }
+
+      /* Scene 1 — bolt + logo */
+      #bolt {
+        width: 260px;
+        height: 420px;
+        filter: drop-shadow(0 0 40px rgba(250, 204, 21, 0.8));
+      }
+      #bolt path {
+        fill: none;
+        stroke: #facc15;
+        stroke-width: 10;
+        stroke-linejoin: round;
+      }
+      #logo1 {
+        position: absolute;
+        font-size: 260px;
+        font-weight: 900;
+        letter-spacing: -0.06em;
+        color: #fde047;
+        text-shadow: 0 0 60px rgba(250, 204, 21, 0.6);
+      }
+      .ring {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        border: 6px solid #facc15;
+        opacity: 0;
+      }
+
+      /* Scene 2 — kinetic words */
+      .word {
+        position: absolute;
+        font-size: 220px;
+        font-weight: 900;
+        letter-spacing: -0.05em;
+        text-transform: uppercase;
+      }
+      .word.accent {
+        color: #facc15;
+      }
+      .word.outline {
+        color: transparent;
+        -webkit-text-stroke: 4px #f4f4f5;
+      }
+
+      /* Scene 3 — cards */
+      #cards {
+        gap: 60px;
+      }
+      .card {
+        position: relative;
+        width: 460px;
+        height: 520px;
+        border-radius: 32px;
+        background: linear-gradient(160deg, #1c1a33, #0f0e1c);
+        border: 2px solid rgba(250, 204, 21, 0.35);
+        padding: 56px 48px;
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+      }
+      .card .icon {
+        width: 110px;
+        height: 110px;
+        border-radius: 28px;
+        background: #facc15;
+        color: #07070b;
+        font-size: 64px;
+        font-weight: 900;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .card h3 {
+        font-size: 60px;
+        font-weight: 800;
         letter-spacing: -0.03em;
+      }
+      .card p {
+        font-size: 32px;
+        line-height: 1.35;
+        color: #a1a1aa;
+      }
+
+      /* Scene 4 — charge meter */
+      #meter-wrap {
+        flex-direction: column;
+        gap: 48px;
+      }
+      #pct {
+        font-size: 240px;
+        font-weight: 900;
+        letter-spacing: -0.05em;
+        font-variant-numeric: tabular-nums;
+      }
+      #pct span {
+        color: #facc15;
+      }
+      #bar {
+        width: 1200px;
+        height: 48px;
+        border-radius: 24px;
+        background: #1c1a33;
+        overflow: hidden;
+        border: 2px solid rgba(250, 204, 21, 0.3);
+      }
+      #bar-fill {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, #f59e0b, #fde047);
+        transform-origin: left center;
+        transform: scaleX(0);
+      }
+      #meter-label {
+        font-size: 44px;
+        font-weight: 600;
+        color: #a1a1aa;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+      }
+
+      /* Scene 5 — burst */
+      .spark {
+        position: absolute;
+        left: 960px;
+        top: 540px;
+        width: 18px;
+        height: 18px;
+        margin: -9px 0 0 -9px;
+        border-radius: 50%;
+        background: #fde047;
+        box-shadow: 0 0 20px #facc15;
+      }
+      #core {
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        background: radial-gradient(circle, #fff7c2 0%, #facc15 45%, #f59e0b 100%);
+        box-shadow: 0 0 120px rgba(250, 204, 21, 0.9);
+        position: absolute;
+      }
+      #burst-text {
+        position: absolute;
+        bottom: 160px;
+        font-size: 72px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+
+      /* Scene 6 — outro */
+      #outro {
+        flex-direction: column;
+        gap: 24px;
+      }
+      #logo2 {
+        font-size: 300px;
+        font-weight: 900;
+        letter-spacing: -0.06em;
+        color: #fde047;
+        text-shadow: 0 0 80px rgba(250, 204, 21, 0.55);
+        line-height: 1;
+      }
+      #tagline {
+        font-size: 64px;
+        font-weight: 500;
+        color: #e4e4e7;
+        letter-spacing: -0.01em;
+      }
+      #underline {
+        width: 600px;
+        height: 8px;
+        border-radius: 4px;
+        background: #facc15;
+        transform-origin: center;
+        transform: scaleX(0);
       }
     </style>
   </head>
@@ -39,15 +235,217 @@
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="10"
+      data-duration="30"
       data-width="1920"
       data-height="1080"
     >
-      <h1 id="title" class="clip" data-start="0" data-duration="10" data-track-index="0">Title</h1>
+      <div class="grid" id="grid"></div>
+
+      <!-- Scene 1: 0–4s -->
+      <div id="s1" class="clip" data-start="0" data-duration="4" data-track-index="0">
+        <svg id="bolt" viewBox="0 0 260 420">
+          <path id="bolt-path" d="M170 10 L40 230 L130 230 L90 410 L220 170 L130 170 Z" />
+        </svg>
+        <div class="ring" id="ring1"></div>
+        <div class="ring" id="ring2"></div>
+        <div id="logo1">ZAP</div>
+      </div>
+
+      <!-- Scene 2: 4–9s -->
+      <div id="s2" class="clip" data-start="4" data-duration="5" data-track-index="0">
+        <div class="word" id="w1">Fast.</div>
+        <div class="word outline" id="w2">Sharp.</div>
+        <div class="word accent" id="w3">Electric.</div>
+      </div>
+
+      <!-- Scene 3: 9–15s -->
+      <div id="s3" class="clip" data-start="9" data-duration="6" data-track-index="0">
+        <div id="cards" class="clip">
+          <div class="card" id="c1">
+            <div class="icon">⚡</div>
+            <h3>Instant</h3>
+            <p>Zero wait. Everything responds the moment you need it.</p>
+          </div>
+          <div class="card" id="c2">
+            <div class="icon">◆</div>
+            <h3>Precise</h3>
+            <p>Every detail tuned, every edge crisp.</p>
+          </div>
+          <div class="card" id="c3">
+            <div class="icon">✦</div>
+            <h3>Alive</h3>
+            <p>Motion and sound that make it feel real.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scene 4: 15–21s -->
+      <div id="s4" class="clip" data-start="15" data-duration="6" data-track-index="0">
+        <div id="meter-wrap" class="clip">
+          <div id="meter-label">Charging</div>
+          <div id="pct">0<span>%</span></div>
+          <div id="bar"><div id="bar-fill"></div></div>
+        </div>
+      </div>
+
+      <!-- Scene 5: 21–26s -->
+      <div id="s5" class="clip" data-start="21" data-duration="5" data-track-index="0">
+        <div id="sparks"></div>
+        <div id="core"></div>
+        <div id="burst-text">Fully charged.</div>
+      </div>
+
+      <!-- Scene 6: 26–30s -->
+      <div id="s6" class="clip" data-start="26" data-duration="4" data-track-index="0">
+        <div id="outro" class="clip">
+          <div id="logo2">ZAP</div>
+          <div id="underline"></div>
+          <div id="tagline">Charge everything.</div>
+        </div>
+      </div>
+
+      <div class="flash" id="flash"></div>
+
+      <!-- Music bed -->
+      <audio id="a01-bed" src="assets/music/bed.wav" data-start="0" data-duration="30" data-volume="0.55" data-track-index="1"></audio>
+
+      <!-- SFX -->
+      <audio id="a02-riser" src="assets/sfx/riser.wav" data-start="0.3" data-duration="1.5" data-volume="0.9" data-track-index="2"></audio>
+      <audio id="a03-impact" src="assets/sfx/impact.wav" data-start="1.8" data-duration="0.9" data-track-index="3"></audio>
+      <audio id="a04-whoosh" src="assets/sfx/whoosh.wav" data-start="3.6" data-duration="0.6" data-track-index="2"></audio>
+
+      <audio id="a05-swipe" src="assets/sfx/swipe.wav" data-start="4.2" data-duration="0.3" data-track-index="2"></audio>
+      <audio id="a06-swipe" src="assets/sfx/swipe.wav" data-start="5.8" data-duration="0.3" data-track-index="3"></audio>
+      <audio id="a07-impact" src="assets/sfx/impact.wav" data-start="7.4" data-duration="0.9" data-volume="0.8" data-track-index="2"></audio>
+      <audio id="a08-whoosh" src="assets/sfx/whoosh.wav" data-start="8.6" data-duration="0.6" data-track-index="3"></audio>
+
+      <audio id="a09-pop" src="assets/sfx/pop.wav" data-start="9.5" data-duration="0.12" data-track-index="2"></audio>
+      <audio id="a10-pop" src="assets/sfx/pop.wav" data-start="9.8" data-duration="0.12" data-track-index="3"></audio>
+      <audio id="a11-pop" src="assets/sfx/pop.wav" data-start="10.1" data-duration="0.12" data-track-index="2"></audio>
+      <audio id="a12-click" src="assets/sfx/click.wav" data-start="11.6" data-duration="0.04" data-track-index="3"></audio>
+      <audio id="a13-click" src="assets/sfx/click.wav" data-start="12.4" data-duration="0.04" data-track-index="2"></audio>
+      <audio id="a14-click" src="assets/sfx/click.wav" data-start="13.2" data-duration="0.04" data-track-index="3"></audio>
+      <audio id="a15-whoosh" src="assets/sfx/whoosh.wav" data-start="14.5" data-duration="0.6" data-track-index="2"></audio>
+
+      <audio id="a16-riser" src="assets/sfx/riser.wav" data-start="15.6" data-duration="1.5" data-volume="0.5" data-track-index="3"></audio>
+      <audio id="a17-click" src="assets/sfx/click.wav" data-start="16" data-duration="0.04" data-track-index="2"></audio>
+      <audio id="a18-click" src="assets/sfx/click.wav" data-start="17" data-duration="0.04" data-track-index="2"></audio>
+      <audio id="a19-click" src="assets/sfx/click.wav" data-start="18" data-duration="0.04" data-track-index="2"></audio>
+      <audio id="a20-riser" src="assets/sfx/riser.wav" data-start="18.5" data-duration="1.5" data-volume="0.9" data-track-index="3"></audio>
+      <audio id="a21-pop" src="assets/sfx/pop.wav" data-start="20" data-duration="0.12" data-track-index="2"></audio>
+      <audio id="a22-swipe" src="assets/sfx/swipe.wav" data-start="20.7" data-duration="0.3" data-track-index="3"></audio>
+
+      <audio id="a23-impact" src="assets/sfx/impact.wav" data-start="21.2" data-duration="0.9" data-track-index="2"></audio>
+      <audio id="a24-whoosh" src="assets/sfx/whoosh.wav" data-start="21.3" data-duration="0.6" data-volume="0.7" data-track-index="3"></audio>
+      <audio id="a25-pop" src="assets/sfx/pop.wav" data-start="22.6" data-duration="0.12" data-track-index="2"></audio>
+      <audio id="a26-riser" src="assets/sfx/riser.wav" data-start="24.4" data-duration="1.5" data-volume="0.8" data-track-index="3"></audio>
+
+      <audio id="a27-impact" src="assets/sfx/impact.wav" data-start="26" data-duration="0.9" data-track-index="2"></audio>
+      <audio id="a28-swipe" src="assets/sfx/swipe.wav" data-start="26.7" data-duration="0.3" data-track-index="3"></audio>
+      <audio id="a29-click" src="assets/sfx/click.wav" data-start="27.4" data-duration="0.04" data-track-index="2"></audio>
+      <audio id="a30-whoosh" src="assets/sfx/whoosh.wav" data-start="28.9" data-duration="0.6" data-volume="0.6" data-track-index="3"></audio>
     </div>
     <script>
+      // Deterministic spark layout for scene 5
+      const sparkHost = document.getElementById("sparks");
+      const SPARKS = 36;
+      for (let i = 0; i < SPARKS; i++) {
+        const s = document.createElement("div");
+        s.className = "spark";
+        s.id = "sp" + i;
+        sparkHost.appendChild(s);
+      }
+
       const tl = gsap.timeline({ paused: true });
-      // Example: tl.fromTo("#title", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6 }, 0);
+
+      // Background grid drift across the whole piece
+      tl.fromTo("#grid", { x: 0, y: 0 }, { x: 80, y: 160, duration: 30, ease: "none" }, 0);
+
+      // ---------- Scene 1: bolt draw + logo slam ----------
+      const boltPath = document.getElementById("bolt-path");
+      const boltLen = boltPath.getTotalLength();
+      tl.set(boltPath, { strokeDasharray: boltLen, strokeDashoffset: boltLen }, 0);
+      tl.to(boltPath, { strokeDashoffset: 0, duration: 1.4, ease: "power2.inOut" }, 0.3);
+      tl.to("#bolt", { scale: 1.08, duration: 0.15, yoyo: true, repeat: 3, ease: "sine.inOut" }, 1.1);
+      tl.to(boltPath, { fill: "#facc15", duration: 0.1 }, 1.75);
+      tl.fromTo("#flash", { opacity: 0.85 }, { opacity: 0, duration: 0.5, ease: "power2.out" }, 1.8);
+      tl.to("#bolt", { scale: 0.4, opacity: 0, duration: 0.25, ease: "power3.in" }, 1.8);
+      tl.fromTo("#logo1", { scale: 2.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "power4.out" }, 1.8);
+      tl.fromTo("#ring1", { scale: 0.5, opacity: 1 }, { scale: 4.5, opacity: 0, duration: 0.9, ease: "power2.out" }, 1.8);
+      tl.fromTo("#ring2", { scale: 0.5, opacity: 0.8 }, { scale: 6, opacity: 0, duration: 1.1, ease: "power2.out" }, 1.95);
+      tl.fromTo("#root", { x: -14 }, { x: 0, duration: 0.4, ease: "elastic.out(1, 0.3)" }, 1.8);
+      tl.to("#logo1", { x: -1400, skewX: 20, opacity: 0, duration: 0.4, ease: "power3.in" }, 3.6);
+
+      // ---------- Scene 2: kinetic words ----------
+      tl.fromTo("#w1", { x: 1400, skewX: -20, opacity: 0 }, { x: 0, skewX: 0, opacity: 1, duration: 0.4, ease: "power4.out" }, 4.2);
+      tl.to("#w1", { y: -500, opacity: 0, duration: 0.35, ease: "power3.in" }, 5.6);
+      tl.fromTo("#w2", { y: 500, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power4.out" }, 5.8);
+      tl.to("#w2", { scale: 0.2, opacity: 0, duration: 0.3, ease: "power3.in" }, 7.1);
+      tl.fromTo("#w3", { scale: 3, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "power4.out" }, 7.4);
+      tl.fromTo("#flash", { opacity: 0.5 }, { opacity: 0, duration: 0.35, immediateRender: false }, 7.4);
+      tl.fromTo("#w3", { rotation: -2 }, { rotation: 2, duration: 0.08, yoyo: true, repeat: 5, ease: "none" }, 7.45);
+      tl.to("#w3", { x: -1600, opacity: 0, duration: 0.4, ease: "power3.in" }, 8.6);
+
+      // ---------- Scene 3: feature cards ----------
+      ["#c1", "#c2", "#c3"].forEach((c, i) => {
+        tl.fromTo(c, { y: 300, scale: 0.6, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2)" }, 9.5 + i * 0.3);
+        tl.to(c, { y: -30, borderColor: "rgba(250, 204, 21, 1)", duration: 0.25, ease: "power2.out" }, 11.6 + i * 0.8);
+        tl.to(c, { y: 0, borderColor: "rgba(250, 204, 21, 0.35)", duration: 0.4, ease: "power2.inOut" }, 11.85 + i * 0.8);
+        tl.fromTo(c + " .icon", { rotation: 0 }, { rotation: 360, duration: 0.5, ease: "power2.inOut" }, 11.6 + i * 0.8);
+        tl.to(c, { y: -900, opacity: 0, duration: 0.45, ease: "power3.in" }, 14.5 + i * 0.08);
+      });
+
+      // ---------- Scene 4: charge meter ----------
+      const pctEl = document.getElementById("pct");
+      const counter = { v: 0 };
+      tl.fromTo("#meter-wrap", { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "power3.out" }, 15.1);
+      tl.fromTo(
+        counter,
+        { v: 0 },
+        {
+          v: 100,
+          duration: 4.4,
+          ease: "power1.in",
+          onUpdate: () => {
+            pctEl.firstChild.nodeValue = Math.round(counter.v);
+          },
+        },
+        15.6,
+      );
+      tl.fromTo("#bar-fill", { scaleX: 0 }, { scaleX: 1, duration: 4.4, ease: "power1.in" }, 15.6);
+      tl.fromTo("#meter-label", { opacity: 1 }, { opacity: 0.35, duration: 0.5, yoyo: true, repeat: 7, ease: "sine.inOut" }, 15.6);
+      tl.fromTo("#pct", { scale: 1 }, { scale: 1.25, duration: 0.12, yoyo: true, repeat: 1, ease: "power2.out" }, 20);
+      tl.to("#pct span", { color: "#fde047", duration: 0.1 }, 20);
+      tl.to("#meter-wrap", { scale: 0.1, opacity: 0, duration: 0.35, ease: "power4.in" }, 20.7);
+
+      // ---------- Scene 5: energy burst ----------
+      tl.fromTo("#core", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(3)" }, 21.2);
+      tl.fromTo("#flash", { opacity: 0.9 }, { opacity: 0, duration: 0.6, immediateRender: false }, 21.2);
+      tl.fromTo("#root", { y: 16 }, { y: 0, duration: 0.5, ease: "elastic.out(1, 0.3)", immediateRender: false }, 21.2);
+      for (let i = 0; i < SPARKS; i++) {
+        const a = (i / SPARKS) * Math.PI * 2;
+        const r = 380 + (i % 4) * 110;
+        tl.fromTo(
+          "#sp" + i,
+          { x: 0, y: 0, scale: 1.4, opacity: 1 },
+          { x: Math.cos(a) * r, y: Math.sin(a) * r, scale: 0.3, opacity: 0, duration: 1.3 + (i % 3) * 0.2, ease: "power3.out" },
+          21.25,
+        );
+      }
+      tl.to("#core", { scale: 1.15, duration: 0.6, yoyo: true, repeat: 3, ease: "sine.inOut" }, 21.6);
+      tl.fromTo("#burst-text", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 22.6);
+      tl.to("#core", { scale: 8, opacity: 0, duration: 1.4, ease: "power2.in" }, 24.5);
+      tl.to("#burst-text", { opacity: 0, duration: 0.4 }, 25.2);
+
+      // ---------- Scene 6: outro ----------
+      tl.fromTo("#flash", { opacity: 1 }, { opacity: 0, duration: 0.6, immediateRender: false }, 26);
+      tl.fromTo("#logo2", { scale: 0.3, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2.5)" }, 26);
+      tl.fromTo("#underline", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 26.7);
+      tl.fromTo("#tagline", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 27.4);
+      tl.to("#logo2", { scale: 1.04, duration: 0.7, yoyo: true, repeat: 1, ease: "sine.inOut" }, 27.6);
+      tl.to("#outro", { opacity: 0, scale: 0.96, duration: 0.8, ease: "power2.in" }, 29.1);
+
+      window.__timelines = window.__timelines || {};
       window.__timelines["main"] = tl;
       tl.seek(0);
     </script>
